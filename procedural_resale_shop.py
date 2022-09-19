@@ -55,7 +55,7 @@ def sell(item_id: int):
 prints all the items in the inventory (if it isn't empty), prints error otherwise
 """
 def print_inventory():
-    # If the inventory is not empty
+    ## If the inventory is not empty 
     if inventory:
         # For each item
         for item_id in inventory:
