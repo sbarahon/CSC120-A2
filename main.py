@@ -1,6 +1,8 @@
 # Import a few useful containers from the typing module
 from calendar import c
 from typing import Dict, Union
+from computer import *
+from oo_resale_shop import *
 
 # Import the functions we wrote in procedural_resale_shop.py
 from procedural_resale_shop import buy, update_price, sell, print_inventory, refurbish
@@ -28,8 +30,7 @@ def create_computer(description: str,
             'price': price
     }
 
-def main():
-    
+def main(): 
     # First, let's make a computer
     computer = create_computer(
         "Mac Pro (Late 2013)",
@@ -37,6 +38,16 @@ def main():
         1024, 64,
         "macOS Big Sur", 2013, 1500
     )
+
+    ###my code###
+
+    #create shop
+    shop = ResaleShop()
+
+    computer1 = Computer("Mac Pro (Late 2013)",
+        "3.5 GHc 6-Core Intel Xeon E5",
+        1024, 64,
+        "macOS Big Sur", 2013, 1500, shop.itemID)
 
     # Print a little banner
     print("-" * 21)
@@ -49,9 +60,20 @@ def main():
     computer_id = buy(computer)
     print("Done.\n")
 
+    ###my code###
+    print("Buying", computer1.description)
+    print("Adding to inventory...")
+    shop.buy(computer1)
+    print("Done.\n")
+
     # Make sure it worked by checking inventory
     print("Checking inventory...")
     print_inventory()
+    print("Done.\n")
+
+    ###my code###
+    print("Checking inventory...")
+    shop.print_inventory()
     print("Done.\n")
 
     # Now, let's refurbish it
@@ -61,18 +83,44 @@ def main():
     refurbish(computer_id, new_OS)
     print("Done.\n")
 
+
+    ###mycode###
+    new_OS = "MacOS Monterey"
+    print("Refurbishing Item ID:", shop.itemID, ", updating OS to", new_OS)
+    print("Updating inventory...")
+    computer1.refurbish(new_OS)
+    print("Done.\n")
+    shop.update(computer1, shop.itemID)
+
+
     # Make sure it worked by checking inventory
     print("Checking inventory...")
     print_inventory()
     print("Done.\n")
-    
+
+    ###my code###
+    print("Checking inventory...")
+    shop.print_inventory()
+    print("Done.\n")
+
+
     # Now, let's sell it!
     print("Selling Item ID:", computer_id)
     sell(computer_id)
+
+    ###my code###
+    print("Selling Item ID:", shop.itemID)
+    shop.sell(shop.itemID)
     
     # Make sure it worked by checking inventory
     print("Checking inventory...")
     print_inventory()
+    print("Done.\n")
+
+
+    ###my code###
+    print("Checking inventory...")
+    shop.print_inventory()
     print("Done.\n")
 
 # Calls the main() function when this file is run

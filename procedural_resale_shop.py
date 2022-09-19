@@ -78,5 +78,7 @@ def refurbish(item_id: int, new_os: Optional[str] = None):
 
         if new_os is not None:
             computer["operating_system"] = new_os # update details after installing new OS
+        
+        
     else:
         print("Item", item_id, "not found. Please select another item to refurbish.")
